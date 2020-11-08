@@ -1,9 +1,17 @@
 import random from 'lodash.random'
 
-export function getRandomPairOfColors() {
-  const colors = ['#37B679', '#DA3C3C', '#3291FF', '#7928CA', '#79FFE1']
+enum Colors {
+  '#37B679' = '#37B679',
+  '#DA3C3C' = '#DA3C3C',
+  '#3291FF' = '#3291FF',
+  '#7928CA' = '#7928CA',
+  '#79FFE1' = '#79FFE1',
+}
+
+export const getRandomPairOfColors = (): string[] => {
+  const colors = Object.values(Colors)
   const getRandomIdx = () => random(0, colors.length - 1)
-  let idx = getRandomIdx()
+  const idx = getRandomIdx()
   let idx2 = getRandomIdx()
 
   // Has to be a different color
@@ -15,9 +23,10 @@ export function getRandomPairOfColors() {
   return [colors[idx], colors[idx2]]
 }
 
-function hexToRgb(hex: string = '') {
-  // @ts-ignore
-  const match = hex.toString(16).match(/[a-f0-9]{6}|[a-f0-9]{3}/i)
+const hexToRgb = (hex = ''): number[] => {
+  // const match = hex.toString(16).match(/[a-f0-9]{6}|[a-f0-9]{3}/i)
+  // Hex is a string...not sure what's up with String.toString(16) ...
+  const match = hex.match(/[a-f0-9]{6}|[a-f0-9]{3}/i)
 
   if (!match) {
     return [0, 0, 0]
@@ -42,7 +51,7 @@ function hexToRgb(hex: string = '') {
   return [r, g, b]
 }
 
-export function isDark(color = '') {
+export const isDark = (color = ''): boolean => {
   // Equation from http://24ways.org/2010/calculating-color-contrast
   const rgb = hexToRgb(color)
   const res = (rgb[0] * 299 + rgb[1] * 587 + rgb[2] * 114) / 1000

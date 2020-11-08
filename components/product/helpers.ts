@@ -7,11 +7,12 @@ export type SelectedOptions = {
 
 export type ProductOption = {
   displayName: string
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   values: any
 }
 
 // Returns the available options of a product
-export function getProductOptions(product: ProductNode) {
+export function getProductOptions(product: ProductNode): ProductOption[] {
   const options = product.productOptions.edges?.reduce<ProductOption[]>(
     (arr, edge) => {
       if (edge?.node.__typename === 'MultipleChoiceOption') {
@@ -24,11 +25,12 @@ export function getProductOptions(product: ProductNode) {
     },
     []
   )
-
+  if (!options) return []
   return options
 }
 
 // Finds a variant in the product that matches the selected options
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export function getCurrentVariant(product: ProductNode, opts: SelectedOptions) {
   const variant = product.variants.edges?.find((edge) => {
     const { node } = edge ?? {}

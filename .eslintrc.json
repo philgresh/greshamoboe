@@ -1,12 +1,19 @@
 {
+  "root": true,
+  "plugins": ["@typescript-eslint"],
   "extends": [
-    "airbnb",
-    "plugin:import/errors",
-    "plugin:import/warnings",
+    // "airbnb",
+    // "plugin:import/errors",
+    // "plugin:import/warnings",
+    // "eslint:recommended",
+    // "plugin:react/recommended",
+    // "plugin:prettier/recommended",
+    // "prettier/react",
+    // "plugin:@typescript-eslint/eslint-recommended",
+    // "plugin:@typescript-eslint/recommended",
     "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended",
-    "prettier/react"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "env": {
     "browser": true,
@@ -15,7 +22,7 @@
     "jest": true,
     "node": true
   },
-  "parser": "babel-eslint",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": true,
@@ -28,10 +35,6 @@
       { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
     ],
     "jsx-a11y/href-no-hash": ["off"],
-    "react/jsx-filename-extension": ["warn", { "extensions": [".js", ".jsx"] }],
-    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
-    // "no-named-as-default": ["off"],
-    // "no-named-as-default-member": ["off"],
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "max-len": [
       "warn",

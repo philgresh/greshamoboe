@@ -20,7 +20,7 @@ export async function getStaticProps({
   }
 }
 
-export default function Cart() {
+const Cart: React.FC = () => {
   const { data, isEmpty } = useCart()
   const { price: subTotal } = usePrice(
     data && {
@@ -143,3 +143,4 @@ export default function Cart() {
 }
 
 Cart.Layout = Layout
+export default Cart;
